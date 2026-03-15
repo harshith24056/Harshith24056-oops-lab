@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sell Item - SellandBuy.com</title>
+  <style>
+    :root {
+      --primary: #1d4ed8;
+      --secondary: #3b82f6;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .navbar h1 {
+      font-size: 1.5rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .sell-container {
+      max-width: 600px;
+      background-color: white;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .sell-container h2 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.6rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .form-group input[type="file"] {
+      padding: 0.4rem;
+    }
+
+    button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: var(--secondary);
+    }
+
+    /* Ad display section */
+    .ads-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .ad-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 1rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .ad-card img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .ad-details h3 {
+      margin: 0;
+      color: var(--primary);
+    }
+
+    .ad-details p {
+      margin: 0.3rem 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #e0e0e0;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <h1>SellandBuy.com</h1>
+    <div class="nav-links">
+      <a href="file:///C:/Users/nellu/n.html">Home</a>
+          <a href="file:///C:/Users/nellu/OneDrive/%E6%96%87%E6%A1%A3/sell.html">sell</a>
+        <a href="file:///C:/Users/nellu/OneDrive/%E6%96%87%E6%A1%A3/anout%20us%20.html">About Us</a>
+         <a href="file:///C:/Users/nellu/OneDrive/%E6%96%87%E6%A1%A3/contact%20us.html">Contact Us</a>
+
+    </div>
+  </nav>
+
+  <!-- Sell Item Form -->
+  <div class="sell-container">
+    <h2>Post Your Ad</h2>
+    <form id="sellForm">
+      <div class="form-group">
+        <label for="title">Item Title</label>
+        <input type="text" id="title" name="title" required />
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select id="category" name="category" required>
+          <option value="">Select a category</option>
+          <option value="Phones">Phones</option>
+          <option value="Cars">Cars</option>
+          <option value="Bikes">Bikes</option>
+          <option value="Furniture">Furniture</option>
+          <option value="Kitchen Electronics">Kitchen Electronics</option>
+          <option value="Scooter">Scooter</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price (₹)</label>
+        <input type="number" id="price" name="price" required />
+      </div>
+
+      <div class="form-group">
+        <label for="desc">Description</label>
+        <textarea id="desc" name="desc" rows="4" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="contact">Contact Number</label>
+        <input type="tel" id="contact" name="contact" required />
+      </div>
+
+      <div class="form-group">
+        <label for="image">Upload Image</label>
+        <input type="file" id="image" name="image" accept="image/*" required />
+      </div>
+
+      <button type="submit">Submit Ad</button>
+    </form>
+  </div>
+
+  <!-- Posted Ads Section -->
+  <div class="ads-container" id="adsContainer">
+    <!-- Ads will be injected here -->
+  </div>
+
+  <footer>
+    <p>&copy; 2025 SellandBuy.com. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById("sellForm");
+    const adsContainer = document.getElementById("adsContainer");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const title = document.getElementById("title").value;
+      const category = document.getElementById("category").value;
+      const price = document.getElementById("price").value;
+      const desc = document.getElementById("desc").value;
+      const contact = document.getElementById("contact").value;
+      const imageInput = document.getElementById("image");
+      const file = imageInput.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function () {
+          const imageURL = reader.result;
+
+          const adHTML = `
+            <div class="ad-card">
+              <img src="${imageURL}" alt="Product Image" />
+              <div class="ad-details">
+                <h3>${title}</h3>
+                <p><strong>Category:</strong> ${category}</p>
+                <p><strong>Price:</strong> ₹${price}</p>
+                <p><strong>Description:</strong> ${desc}</p>
+                <p><strong>Contact:</strong> ${contact}</p>
+              </div>
+            </div>
+          `;
+          adsContainer.insertAdjacentHTML("afterbegin", adHTML);
+          form.reset();
+          alert("Your ad has been posted!");
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SellandBuy.com - Modern Marketplace</title>
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #4f46e5;
+      --accent-color: #dc2626;
+      --dark-bg: #0f172a;
+      --light-bg: #f8fafc;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--light-bg);
+    }
+
+    .navbar {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .navbar h1 {
+      margin: 0;
+      font-size: 2rem;
+      text-align: center;
+      flex: 1 1 100%;
+    }
+
+    .navbar-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+      flex: 1 1 100%;
+    }
+
+    .navbar a {
+      color: rgba(255, 255, 255, 0.95);
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s ease;
+    }
+
+    .navbar a:hover {
+      opacity: 0.8;
+    }
+
+    .search-bar {
+      text-align: center;
+      padding: 2rem;
+      background-color: white;
+    }
+
+    input[type='text'] {
+      width: 60%;
+      padding: 1rem 2rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 50px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    input[type='text']:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    button {
+      padding: 1rem 2rem;
+      margin-left: 1rem;
+      border-radius: 50px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: var(--secondary-color);
+    }
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .categories a {
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
+      background: white;
+      color: var(--dark-bg);
+      text-decoration: none;
+      border: 2px solid #e2e8f0;
+      transition: all 0.3s ease;
+    }
+
+    .categories a:hover {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+      transform: translateY(-2px);
+    }
+
+    .ads {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .ad {
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      border: 1px solid #f1f5f9;
+    }
+
+    .ad:hover {
+      transform: translateY(-5px);
+    }
+
+    .ad img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .ad h3 {
+      color: var(--dark-bg);
+      margin: 0.5rem 0;
+      font-size: 1.25rem;
+    }
+
+    .ad p {
+      color: #64748b;
+      font-size: 1.1rem;
+      margin: 0.5rem 0;
+    }
+
+    .contact-seller {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      width: 100%;
+      transition: transform 0.2s ease;
+      margin-top: 1rem;
+    }
+
+    .contact-seller:hover {
+      transform: scale(0.98);
+      opacity: 0.9;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .modal-content h2 {
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+
+    .modal-content input,
+    .modal-content textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .close-btn {
+      background-color: var(--accent-color);
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .navbar h1 {
+        font-size: 1.5rem;
+      }
+
+      input[type='text'] {
+        width: 80%;
+      }
+
+      .ads {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <h1>SellandBuy.com</h1>
+      <div class="navbar-links">
+       <a href="file:///C:/Users/nellu/n.html">Home</a>
+          <a href="file:///C:/Users/nellu/OneDrive/%E6%96%87%E6%A1%A3/sell.html">sell</a>
+        <a href="file:///C:/Users/nellu/OneDrive/%E6%96%87%E6%A1%A3/anout%20us%20.html">About Us</a>
+         <a href="file:///C:/Users/nellu/OneDrive/%E6%96%87%E6%A1%A3/contact%20us.html">Contact Us</a>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search products...">
+    <button onclick="searchProducts()">Search</button>
+  </div>
+
+  <!-- Categories -->
+  <div class="categories">
+     <a href="file:///C:/Users/nellu/OneDrive/%E6%96%87%E6%A1%A3/c.html">Cars</a>
+    <a href="file:///C:/Users/nellu/OneDrive/%E6%96%87%E6%A1%A3/p.html">Mobile Phones</a>
+    <a href="file:///C:/Users/nellu/OneDrive/%E6%96%87%E6%A1%A3/q.html">Motorcycles</a>
+    <a href="file:///C:/Users/nellu/OneDrive/%E6%96%87%E6%A1%A3/l.html">laptops</a>
+    <a href="file:///C:/Users/nellu/OneDrive/%E6%96%87%E6%A1%A3/f.html">furniture</a>
+    <a href="file:///C:/Users/nellu/OneDrive/%E6%96%87%E6%A1%A3/k.html">Kitchen electronics</a>
+    <a href="file:///C:/Users/nellu/OneDrive/%E6%96%87%E6%A1%A3/Scooters.html">Scooters</a>
+
+
+  </div>
+
+  <!-- Ads Grid -->
+  <div class="ads">
+    <!-- Repeatable product card -->
+    <div class="ad">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf3sU9_xkd4AvGZZibYIGLLgwRxT9c1AREWQ&s" alt="Car">
+      <h3>Car</h3>
+      <p>Price: ₹7,00,000</p>
+      <button class="contact-seller" onclick="openModal('Car')">Contact Seller</button>
+         </div>
+
+    <!-- Add your other product cards below -->
+    <div class="ad">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXUVXERm3yWgAa9s5uAIG2et2PtD1mM-1n6g&s" alt="Smartphone">
+      <h3>Smartphone</h3>
+      <p>Price: ₹12,000</p>
+      <button class="contact-seller" onclick="openModal('Smartphone')">Contact Seller</button>
+    </div>
+   <div class="ad">
+            <img src="https://rukminim3.flixcart.com/image/850/1000/kc3p30w0/dslr-camera/d/g/p/eos-eos-1500d-canon-original-imafta9rtu4wxj8h.jpeg?q=90&crop=false" alt="Camera">
+            <h3>Camera</h3>
+            <p>Price: ₹55,991</p>
+            <button class="contact-seller" onclick="openModal('Camera')">Contact Seller</button>
+                   </div>
+        <div class="ad">
+            <img src="https://etimg.etb2bimg.com/photo/57203645.cms" alt="Bike">
+            <h3>Bike</h3>
+            <p>Price: ₹100,000</p>
+            <button class="contact-seller" onclick="openModal('Bike')">Contact Seller</button>
+                    </div>
+        <div class="ad">
+            <img src="https://www.intex.in/cdn/shop/products/1_9b8014ad-124e-4742-a628-9a4c4affe617.jpg?v=1648711109" alt="Television">
+            <h3>Television</h3>
+            <p>Price: ₹20,000</p>
+            <button class="contact-seller" onclick="openModal('Television')">Contact Seller</button>
+                    </div>
+        <div class="ad">
+            <img src="https://static.toiimg.com/thumb/msid-80010563,width-1070,height-580,imgsize-229684,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg" alt="Refrigerator">
+            <h3>Refrigerator</h3>
+            <p>Price: ₹10,990</p>
+           <button class="contact-seller" onclick="openModal('Refrigerator')">Contact Seller</button>
+                    </div>
+        <div class="ad">
+            <img src="https://vdaadmin.venusdigitalarcade.in/media/catalog/product/cache/a4aa45628d61667009e8bfd73fcc061b/8/9/89_10.jpg" alt="Washing Machine">
+            <h3>Washing Machine</h3>
+            <p>Price: ₹15,490</p>
+            <button class="contact-seller" onclick="openModal('Washing Machine')">Contact Seller</button>
+        </div>
+<div class="ad">
+            <img src=https://content.jdmagicbox.com/comp/dehradun/b3/9999px135.x135.220122170718.v8b3/catalogue/auto-empire-car-dealership-sudhowala-dehradun-second-hand-car-dealers-hyundai-rugvccwgk2.jpg
+            <h3>car</h3>
+            <p>Price:₹4,00000</p>
+            <button class="contact-seller" onclick="openModal('Car')">Contact Seller</button>
+                  </div>
+<div class="ad">
+            <img src=https://image.made-in-china.com/202f0j00qgIGAmJMLhpH/Home-Storage-Clothes-Locker-Metal-Closet-Cabinet-Cupboard-Wardrobe.webp
+            <h3>cupboard</h3>
+            <p>Price:₹12,400</p>
+            <button class="contact-seller" onclick="openModal('Cupboard')">Contact Seller</button>
+                    </div>
+<div class="ad">
+            <img src=https://www.buy2hands.com/wp-content/uploads/2022/11/Ampere-Magnus-EX-Electric-Scooter-Second-Hand.jpg
+            <h3>scooter</h3>
+            <p>Price: ₹19,000</p>
+            <button class="contact-seller" onclick="openModal(' Scooter')">Contact Seller</button>
+                    </div>
+<div class="ad">
+            <img src=https://images.jdmagicbox.com/quickquotes/images_main/wooden-second-hand-bed-2227570624-pws8xi0x.jpg
+            <h3>Bed</h3>
+            <p>Price: ₹12,560</p>
+            <button class="contact-seller" onclick="openModal('Bed')">Contact Seller</button>
+        </div>
+ <div class="ad">
+       <img src=https://images.jdmagicbox.com/quickquotes/images_main/second-hand-wooden-6-seater-dining-table-set-for-restaurant-2223377000-x0m9ir1s.jpg
+            <h3>Dinning Table</h3>
+            <p>Price: ₹4,000</p>
+            <button class="contact-seller" onclick="openModal('Dinning Table')">Contact Seller</button>
+        </div>
+      </div>
+
+
+
+    <!-- Add more cards as needed -->
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h2 id="modalTitle">Contact Seller</h2>
+      <input type="text" placeholder="Your Name">
+      <input type="email" placeholder="Your Email">
+      <textarea rows="3" placeholder="Your Message"></textarea>
+      <button class="contact-seller">Send Message</button>
+      <button class="contact-seller close-btn" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+<script>
+  function openModal(itemName) {
+    document.getElementById('modalTitle').textContent = `Contact Seller - ${itemName}`;
+    document.getElementById('modal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+  }
+
+  function searchProducts() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    const products = document.querySelectorAll('.ad');
+    products.forEach(product => {
+      const productName = product.querySelector('h3').textContent.toLowerCase();
+      product.style.display = productName.includes(searchTerm) ? 'block' : 'none';
+    });
+  }
+
+  //  Real-time search as you type
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('searchInput').addEventListener('input', searchProducts);
+  });
+</script>
+</body>
+</html>
