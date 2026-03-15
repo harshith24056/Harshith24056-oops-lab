@@ -1,0 +1,12 @@
+void statistics() {
+
+    int visitedCount = 0;
+
+    for(int i=0;i<n;i++)
+        if(r[i].visited)
+            visitedCount++;
+
+    printf("Total Relatives: %d\n", n);
+    printf("Visited: %d\n", visitedCount);
+    printf("Not Visited: %d\n", n - visitedCount);
+}
